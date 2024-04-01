@@ -1,0 +1,49 @@
+<!-- movie_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }} - Movie Detail</title>
+</head>
+<body>
+    <div class="movie-detail">
+        <h1>{{ movie.title }}</h1>
+        <p>{{ movie.description }}</p>
+        <p>Release Date: {{ movie.release_date }}</p>
+        <p>Actors: {{ movie.actors }}</p>
+        <p>Category: {{ movie.category }}</p>
+        <p>Trailer Link: <a href="{{ movie.trailer_link }}">{{ movie.trailer_link }}</a></p>
+        <video controls>
+            <source src="{{ movie.trailer_link }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Existing Reviews -->
+        <h2>Reviews</h2>
+        <ul>
+            {% for review in movie.review_set.all %}
+                <li>
+                    <p>User: {{ review.user.username }}</p>
+                    <p>Rating: {{ review.rating }}</p>
+                    <p>{{ review.content }}</p>
+                </li>
+            {% empty %}
+                <li>No reviews yet.</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Review Form -->
+        <h2>Write a Review</h2>
+        <form method="post" action="{% url 'add_review' movie.id %}">
+            {% csrf_token %}
+            <label for="content">Content:</label><br>
+            <textarea id="content" name="content"></textarea><br>
+            <label for="rating">Rating:</label><br>
+            <input type="number" id="rating" name="rating" min="1" max="5"><br>
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+</body>
+</html>

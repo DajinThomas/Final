@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="url"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"],
+        button[type="button"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Movie</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+
+            <label for="poster">Poster URL:</label><br>
+            <input type="url" id="poster" name="poster"><br>
+
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description"></textarea><br>
+
+            <label for="release_date">Release Date:</label><br>
+            <input type="date" id="release_date" name="release_date"><br>
+
+            <label for="actors">Actors:</label><br>
+            <input type="text" id="actors" name="actors"><br>
+
+            <label for="category">Category:</label><br>
+            <input type="text" id="category" name="category"><br>
+
+            <label for="trailer_link">Trailer Link:</label><br>
+            <input type="url" id="trailer_link" name="trailer_link"><br>
+
+            <button type="submit">Add Movie</button>
+            <button type="button" onclick="window.location.href='{% url 'home' %}'">Cancel</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* CSS styles for user profile */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 800px; /* Adjusted width for better layout */
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background-color: #1778f2;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .profile-header h1 {
+            margin: 5px 0;
+        }
+
+        .profile-content {
+            padding: 20px;
+        }
+
+        .profile-content p {
+            margin: 10px 0;
+        }
+
+        .profile-footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+
+        .profile-footer a {
+            color: #1778f2;
+            text-decoration: none;
+        }
+
+        /* CSS styles for movie listing */
+        .movies-added {
+            padding: 20px;
+        }
+
+        .movies-added h2 {
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Button styles */
+        .action-button {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit-button {
+            background-color: #28a745; /* Green */
+        }
+
+        .delete-button {
+            background-color: #dc3545; /* Red */
+        }
+
+        /* Button hover effect */
+        .action-button:hover {
+            filter: brightness(90%);
+        }
+
+        /* Button focus effect */
+        .action-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Adjust color as needed */
+        }
+
+        /* Button active effect */
+        .action-button:active {
+            transform: translateY(1px);
+        }
+
+        /* Truncate text if it exceeds 100 characters */
+        .truncate-text {
+            display: inline-block;
+            max-width: 300px; /* Adjust width as needed */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="profile-header">
+        <!-- <img src="profile-pic.jpg" alt="Profile Picture"> -->
+        <h1>{{ user.username }}</h1>
+    </div>
+
+    <div class="profile-content">
+        <div>
+            <h2>Account Information</h2>
+            <p>Email: {{ user.email }}</p>
+            <p>First Name: {{ user.first_name }}</p>
+            <p>Last Name: {{ user.last_name }}</p>
+        </div>
+    </div>
+
+    <div class="profile-footer">
+        <a href="{% url 'logout' %}" class="action-button">Logout</a>
+        <a href="{% url 'edit_profile' %}" class="action-button">Edit Profile</a>
+        <a href="{% url 'change_password' %}" class="action-button">Change Password</a>
+    </div>
+</div>
+
+<div class="movies-added">
+    <h2>Movies Added by {{ user.username }}</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+<!--            <th>Description</th>-->
+            <th>Release Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for movie in movies %}
+        <tr>
+            <td>{{ movie.title }}</td>
+<!--            <td><span class="truncate-text">{{ movie.description|slice:":100" }}</span></td>-->
+            <td>{{ movie.release_date }}</td>
+            <td>
+                <a href="{% url 'edit_movie' movie.id %}" class="action-button edit-button">Edit</a>
+                <a href="{% url 'delete_movie' movie.id %}" class="action-button delete-button">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No movies added yet.</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

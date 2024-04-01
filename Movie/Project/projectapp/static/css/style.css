@@ -1,0 +1,310 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+/* Navbar styles */
+.navbar {
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    position: sticky;
+    top: 0;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    height: 100%;
+    color: white;
+    font-family: "Sen", sans-serif;
+}
+
+.logo-container {
+    font-size: 30px;
+    color: #4dbf00;
+}
+
+.menu-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-list-item {
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.menu-list-item.active {
+    font-weight: bold;
+}
+
+.menu-list-item a {
+    color: white;
+    text-decoration: none;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-text-container {
+    margin-right: 40px;
+    margin-left: 10px;
+}
+
+.profile-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.profile-picture {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 50px;
+    height: 100%;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.left-menu-icon {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+/* Main Content Container */
+.container {
+    background-color: #151515;
+    min-height: calc(100vh - 50px);
+    color: white;
+    padding-top: 50px; /* Adjust to accommodate the fixed navbar */
+}
+
+.content-container {
+    margin-left: 50px;
+}
+
+/* Featured Content */
+.featured-content {
+    height: 50vh;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.featured-title {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.featured-desc {
+    width: 100%;
+    max-width: 500px;
+    color: lightgray;
+    margin-bottom: 30px;
+}
+
+.featured-button {
+    background-color: #4dbf00;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Movie List Title */
+.movie-list-title {
+    margin-left: 60px;
+    margin-top: 20px;
+}
+
+/* Categories */
+.categories {
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
+.categories a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #4dbf00;
+    font-size: 18px;
+    padding: 5px 10px;
+    border: 1px solid #4dbf00;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.categories a:hover {
+    background-color: #4dbf00;
+    color: #fff;
+}
+
+/* Movie Cards */
+.movie {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 60px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+/* Video Card */
+.video-card {
+    width: calc(33.33% - 60px);
+    margin: 0 30px 40px 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-card video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.video-card .info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 16px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-card:hover .info {
+    opacity: 1;
+}
+
+.video-card h2 {
+    margin: 0;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.video-card p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 600px) {
+    .menu-container {
+        display: none;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .navbar-container {
+        padding: 0 20px;
+    }
+
+    .content-container {
+        margin-left: 0;
+    }
+
+    .featured-content {
+        padding: 20px;
+    }
+
+    .movie-list-title {
+        margin-left: 20px;
+    }
+
+    .movie, .movie-cards {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .video-card {
+        width: calc(50% - 40px);
+        margin: 0 20px 40px 20px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+    .sidebar {
+        padding-top: 80px;
+    }
+
+    .content-container {
+        margin-left: 60px;
+    }
+
+    .featured-content {
+        padding: 30px;
+    }
+
+    .movie-list-title {
+        margin-left: 60px;
+    }
+
+    .movie {
+        margin-left: 25px;
+    }
+
+    .video-card {
+        margin-left: 30px;
+    }
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
